@@ -1,0 +1,92 @@
+<h1 class="hola1">Tarea 4 - Luciano Chiang</h1>
+<h2 class="margen">Transacciones</h2>
+<div class="background">
+  <div class="cubre">
+    <% listaTrans.forEach( (trans) => { %>
+      <div> 
+        <div>
+          <p>
+            <div class="hola">
+              ID:<%= trans.id %>
+            </div>
+            <div class="hola">
+              Tipo Operación:<%= trans.tipooperacion %>
+            </div>
+            <div class="hola">
+              ID Mensaje:<%= trans.mensajeid %>
+            </div>
+            <div class="hola">
+              Banco Origen:<%= trans.bancoorigen %>
+            </div>
+            <div class="hola">
+              Cuenta Origen:<%= trans.cuentaorigen %>
+            </div>
+            <div class="hola">
+              Banco Destino:<%= trans.bancodestino %>
+            </div>
+            <div class="hola">
+              Cuenta Destino:<%= trans.cuentadestino %>
+            </div>
+            <div class="hola">
+              Monto:<%= trans.monto %>
+            </div>
+        </p>
+        </div>
+      </div> 
+    <% }) %>
+  </div>
+</div>
+<div class="papi">
+  <div>
+    <div class="container">
+      <canvas id="myChart">
+      </canvas>
+    </div>
+    <script>
+      var text = "<%= datahisto  %>";
+      const myArray = text.split(",");
+      console.log(myArray);
+      let myChart = document.getElementById('myChart').getContext('2d');
+      Chart.defaults.font.size = 20;
+      let massPopChart = new Chart(myChart, {
+        type:'bar',
+        data:{
+          labels:['< 30.000.000', '30.000.000-39.999.999', '40.000.000-49.999.999', '50.000.000-59.999.999', '60.000.000-69.999.999', '70.000.000-79.999.999', '> 79.999.999'],
+          datasets:[{
+            label:false,
+            data: myArray,
+            backgroundColor:['green', 'black', 'orange', 'blue', 'gray', 'pink', 'brown'],
+            borderWidth:4,
+            borderColor:'black',
+          }]
+        },
+        options:{
+          plugins: {
+                title: {
+                    display: true,
+                    text: 'HISTOGRAMA DE MONTO DE TRANSACCIONES (otros rangos, transacciones superan los 10 MILLONES)'
+                },
+                legend: {
+                  display: false
+                }
+    
+            }
+        }
+      });
+    </script>
+  </div>
+  <div class="son">
+    <h2>Botón Para Actualizar Datos:</h2>
+    <a href="/"><button>ACTUALIZAR INFO</button></a>
+    <h2>Total de Transacciones:</h2>
+    <h2><%= totaltrans %></h2>
+    <h2>Envío de Fondos:</h2>
+    <h2><%= envios %></h2>
+    <h2>Reversas de Transacción:</h2>
+    <h2><%= reversas %></h2>
+  </div>
+</div>
+
+
+
+
